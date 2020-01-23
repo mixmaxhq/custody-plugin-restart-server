@@ -1,5 +1,5 @@
-const {join: joinPath} = require('path');
-const {promisify} = require('promise-callbacks');
+const { join: joinPath } = require('path');
+const { promisify } = require('promise-callbacks');
 const fileExists = promisify(require('fs').access);
 
 async function canRestartServer(process) {

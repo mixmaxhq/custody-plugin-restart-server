@@ -1,5 +1,5 @@
 const canRestartServer = require('./canRestartServer');
-const {promisify} = require('promise-callbacks');
+const { promisify } = require('promise-callbacks');
 const lazyMemoize = require('lazy-memoize-one');
 
 const exec = promisify(require('child_process').exec);
@@ -24,14 +24,17 @@ module.exports = function({ debug }, opts) {
       if (!canRunCommand) return [];
 
       return [
-        [opts.key || DEFAULT_KEY, {
-          verb: 'restart (just the server)',
-          async toggle() {
-            const cwd = await process.getWorkingDirectory();
-            return exec('touch app.js', { cwd });
-          }
-        }]
+        [
+          opts.key || DEFAULT_KEY,
+          {
+            verb: 'restart (just the server)',
+            async toggle() {
+              const cwd = await process.getWorkingDirectory();
+              return exec('touch app.js', { cwd });
+            },
+          },
+        ],
       ];
-    }
+    },
   };
 };
